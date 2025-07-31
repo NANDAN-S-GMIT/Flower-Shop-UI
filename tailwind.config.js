@@ -1,11 +1,8 @@
-// tailwind.config.js
-export default {
-  content: [
-    './index.html',
-    './src/**/*.{js,ts,jsx,tsx}',
-  ],
-  theme: {
-    extend: {},
-  },
-  plugins: [],
-}
+// vite.config.js
+import { defineConfig } from 'vite'
+import react from '@vitejs/plugin-react'
+
+export default defineConfig({
+  base: '/Flower-Shop-UI/',  // IMPORTANT: This must match your repo name
+  plugins: [react()],
+})
