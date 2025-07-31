@@ -6,11 +6,12 @@ function Home() {
 
   return (
     <div className="relative bg-white h-screen">
-      <img
-        src="/nursery1.jpg"
-        className="w-full h-full object-cover"
-        alt="Hero Image"
-      />
+<img
+  src={`${import.meta.env.BASE_URL}nursery1.jpg`}
+  className="w-full h-full object-cover"
+  alt="Hero Image"
+/>
+
       <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 z-10 w-11/12">
         <div className="bg-black/50 backdrop-blur-md px-6 py-4 rounded-xl h-full flex items-center justify-between">
           <div className="flex flex-col justify-center w-1/3">

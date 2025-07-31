@@ -71,9 +71,14 @@ function ProductPage() {
     const navigate = useNavigate();
     return (
         <div className="h-screen bg-gray-50  w-screen">
-            <div className="relative flex h-2/12 bg-green-700 w-full p-3 items-center ">
+            <div className="relative flex h-2/12 bg-green-700 w-full py-3 px-10 items-center ">
                 <div className='flex items-center hover:cursor-pointer' onClick={() => navigate('/')}>
-                    <img src='logo.jpg' className='h-12 w-12 rounded-full'></img>
+                    <img
+                        src={`${import.meta.env.BASE_URL}logo.jpg`}
+                        className="h-12 w-12 rounded-full"
+                        alt="Logo"
+                    />
+
                     <div className='w-2'>
                     </div>
                     <div className="flex-col text-white md:text-xl">
@@ -109,10 +114,11 @@ function ProductPage() {
                                     </span>
                                     <h3 className="text-lg font-semibold text-center">{name}</h3>
                                     <img
-                                        src={image}
+                                        src={`${import.meta.env.BASE_URL}${image.replace(/^\//, '')}`}
                                         alt={name}
                                         className="w-full h-48 object-contain my-4"
                                     />
+
                                     <p className="text-green-600 text-center font-semibold">${price}</p>
                                     <p className="text-center text-sm mb-4">{description}</p>
                                     <CartAddButton name={name} price={price} image={image} />

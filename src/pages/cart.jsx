@@ -3,6 +3,8 @@ import React from 'react';
 import CartIcon from './cart_icon';
 import { useDispatch, useSelector } from 'react-redux';
 import { addToCart, removeFromCart, updateQuantity } from '../cartSlice';
+import { useState } from 'react';
+
 
 function Cart() {
     const dispatch = useDispatch();
@@ -15,7 +17,7 @@ function Cart() {
     const handleDecrement = (item) => {
         if (item.quantity > 1) {
             dispatch(updateQuantity({ id: item.id, quantity: item.quantity - 1 }));
-        }else{
+        } else {
             dispatch(removeFromCart(item.id));
         }
     };
@@ -27,12 +29,18 @@ function Cart() {
     let cartValue = cartItems.reduce((acc, curr) => acc + curr.price * curr.quantity, 0);
     const totalQuantity = cartItems.reduce((sum, item) => sum + item.quantity, 0);
 
+    const [messageToggle, setMessageToggle] = useState(true);
 
     return (
         <div className="h-screen bg-gray-50 w-screen">
-            <div className="relative flex h-2/12 bg-green-700 w-full p-3 items-center ">
+            <div className="relative flex h-2/12 bg-green-700 w-full py-3 px-10 items-center ">
                 <div className='flex items-center hover:cursor-pointer' onClick={() => navigate('/')}>
-                    <img src='/logo.jpg' className='h-12 w-12 rounded-full' alt="logo" />
+                    <img
+                        src={`${import.meta.env.BASE_URL}logo.jpg`}
+                        className='h-12 w-12 rounded-full'
+                        alt="logo"
+                    />
+
                     <div className='w-2'></div>
                     <div className="flex-col text-white md:text-xl">
                         <h1>Green Gardens</h1>
@@ -52,15 +60,20 @@ function Cart() {
             <div className='flex flex-col justify-center w-full h-10/12 gap-6 text-center items-center'>
                 <div className='text-2xl'>Total Cart Value: ${cartValue}</div>
                 <div className='flex items-center justify-center w-full'> {cartItems.length > 0 &&
-                    <div className="w-3/4 max-h-[70vh] overflow-y-scroll border-green-700 border-2 p-4 space-y-4">
+                    <div className="w-3/4 max-h-[60vh] overflow-y-scroll border-green-700 border-2 p-4 space-y-4">
                         {cartItems.map((item, index) => {
                             const { id, name, price, imageUrl, quantity } = item;
 
                             return (
                                 <div key={index} className='flex w-full gap-4 border-b pb-4'>
-                                    <img src={imageUrl} className='w-2/5 h-1/5 object-cover' alt={name} />
+                                    <img
+                                        src={`${import.meta.env.BASE_URL}${imageUrl.replace(/^\//, '')}`}
+                                        className='w-1/5 h-[30vh] object-cover'
+                                        alt={name}
+                                    />
 
-                                    <div className='flex flex-col justify-between w-3/5 items-center text-center'>
+
+                                    <div className='flex flex-col justify-between w-4/5 items-center text-center'>
                                         <p className='text-2xl'>{name}</p>
                                         <p className='text-lg'>Price: ${price}</p>
 
@@ -100,8 +113,8 @@ function Cart() {
                     Continue shopping
                 </button>
 
-                <button className="bg-green-600 text-white w-1/4 py-2 rounded hover:bg-green-700 transition">
-                    Checkout
+                <button className="bg-green-600 text-white w-1/4 py-2 rounded hover:bg-green-700 transition" onClick={()=> setMessageToggle(false)}>
+                    {messageToggle?'Checkout':'Coming Soon...'}
                 </button>
             </div>
         </div>
