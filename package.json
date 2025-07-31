@@ -1,6 +1,7 @@
 {
   "name": "flower_shop",
-  "homepage": "./",
+  "homepage": "https://nandan-s-gmit.github.io/Flower-Shop-UI",
+
   "private": true,
   "version": "0.0.0",
   "type": "module",
