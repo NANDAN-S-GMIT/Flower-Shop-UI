@@ -32,7 +32,7 @@ function Cart() {
         <div className="h-screen bg-gray-50 w-screen">
             <div className="relative flex h-2/12 bg-green-700 w-full p-3 items-center ">
                 <div className='flex items-center hover:cursor-pointer' onClick={() => navigate('/')}>
-                    <img src='logo.jpg' className='h-12 w-12 rounded-full' alt="logo" />
+                    <img src='/logo.jpg' className='h-12 w-12 rounded-full' alt="logo" />
                     <div className='w-2'></div>
                     <div className="flex-col text-white md:text-xl">
                         <h1>Green Gardens</h1>
